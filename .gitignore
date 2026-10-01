@@ -1,41 +1,91 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
+# Dependencies
 /node_modules
 /.pnp
 .pnp.*
+.pnpm-store
+jspm_packages/
+web_modules/
+
+# Package manager files
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases
+!.yarn/sdks
 !.yarn/versions
 
-# testing
-/coverage
-
-# next.js
+# Next.js
 /.next/
 /out/
 
-# production
+# Production builds
 /build
+/dist
+.nuxt/
+.output/
+.vuepress/dist
+.svelte-kit/
+coverage/
+.nyc_output/
+.parcel-cache/
+.cache/
+.vite/
+**/.vitepress/cache
+**/.vitepress/dist
 
-# misc
-.DS_Store
-*.pem
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
 
-# debug
+# Logs
+logs/
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+lerna-debug.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
-
-# vercel
-.vercel
-
-# typescript
+# TypeScript
 *.tsbuildinfo
 next-env.d.ts
+
+# Testing and diagnostics
+report.*.*.*.*.json
+*.lcov
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Debugging and caches
+.eslintcache
+.stylelintcache
+.node_repl_history
+.grunt/
+.fusebox/
+.dynamodb/
+.firebase/
+.tern-port
+.vscode-test/
+
+# Miscellaneous
+.DS_Store
+*.pem
+*.tgz
+.yarn-integrity
+.lock-wscript
+lib-cov/
+bower_components/
+.vercel/
+.vuepress/
+.temp/
+.docusaurus/
+.serverless/
+
+# Editor settings
+.idea/
