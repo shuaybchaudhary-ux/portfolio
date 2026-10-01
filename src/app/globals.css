@@ -1,26 +1,395 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #f5f4f0;
+  --ink: #080808;
+  --muted: #777771;
+  --line: #d7d6d0;
+  --forest: #123c32;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-forest: var(--forest);
+
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--paper);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* -------------------------------------------------
+   EDITORIAL FILM TREATMENT
+-------------------------------------------------- */
+
+.film-image {
+  filter:
+    grayscale(100%)
+    contrast(1.07)
+    brightness(0.97);
+}
+
+.film-image-soft {
+  filter:
+    grayscale(100%)
+    contrast(1.03)
+    brightness(0.98);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* -------------------------------------------------
+   3D HERO FLIP SYSTEM
+-------------------------------------------------- */
+
+.hero-flip-stage {
+  perspective: 1800px;
+  perspective-origin: 50% 50%;
+}
+
+.hero-flip-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition:
+    transform 1100ms cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.hero-flip-card--flipped {
+  transform: rotateY(180deg);
+}
+
+.hero-flip-face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.hero-flip-front {
+  transform: rotateY(0deg);
+}
+
+.hero-flip-back {
+  transform: rotateY(180deg);
+}
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================================
+   HERO — 3D FLIP SYSTEM
+========================================================= */
+
+.hero-flip-stage {
+  perspective: 1800px;
+  perspective-origin: 50% 50%;
+}
+
+.hero-flip-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition:
+    transform 1200ms cubic-bezier(0.76, 0, 0.24, 1);
+  will-change: transform;
+}
+
+.hero-flip-card--flipped {
+  transform: rotateY(180deg);
+}
+
+.hero-flip-face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.hero-flip-front {
+  transform: rotateY(0deg);
+}
+
+.hero-flip-back {
+  transform: rotateY(180deg);
+}
+
+
+/* =========================================================
+   HERO — PREMIUM GLASS
+========================================================= */
+
+.expertise-glass {
+  position: relative;
+  overflow: hidden;
+
+  /*
+    The surface is intentionally translucent.
+    It is NOT a solid white card.
+  */
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.42) 0%,
+      rgba(255, 255, 255, 0.16) 42%,
+      rgba(255, 255, 255, 0.07) 100%
+    );
+
+  /*
+    Frosted glass.
+  */
+  backdrop-filter:
+    blur(24px)
+    saturate(135%);
+
+  -webkit-backdrop-filter:
+    blur(24px)
+    saturate(135%);
+
+  /*
+    Hairline glass edge.
+  */
+  border: 1px solid rgba(0, 0, 0, 0.085);
+
+  /*
+    Depth + internal light.
+  */
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.65),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.025),
+    0 18px 45px rgba(0, 0, 0, 0.035);
+
+  transition:
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    background 500ms ease,
+    border-color 500ms ease,
+    box-shadow 500ms ease;
+}
+
+
+/*
+  Large soft reflection across the glass.
+*/
+.expertise-glass {
+  position: relative;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.075) 0%,
+      rgba(255, 255, 255, 0.025) 45%,
+      rgba(255, 255, 255, 0.01) 100%
+    );
+
+  backdrop-filter:
+    blur(26px)
+    saturate(140%);
+
+  -webkit-backdrop-filter:
+    blur(26px)
+    saturate(140%);
+
+  border: 1px solid rgba(0, 0, 0, 0.075);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.018),
+    0 14px 38px rgba(0, 0, 0, 0.025);
+
+  transition:
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    background 500ms ease,
+    border-color 500ms ease,
+    box-shadow 500ms ease;
+}
+
+
+.expertise-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      125deg,
+      rgba(255, 255, 255, 0.20) 0%,
+      rgba(255, 255, 255, 0.035) 25%,
+      transparent 52%,
+      rgba(0, 0, 0, 0.012) 100%
+    );
+
+  opacity: 0.8;
+}
+
+
+/*
+  Very subtle glass edge glow.
+*/
+.expertise-glass::after {
+  content: "";
+  position: absolute;
+
+  pointer-events: none;
+
+  left: 10%;
+  right: 10%;
+  top: 0;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.75),
+      transparent
+    );
+
+  opacity: 0.55;
+}
+
+
+/* =========================================================
+   GLASS HOVER
+========================================================= */
+
+.expertise-card:hover .expertise-glass {
+  transform: translateY(-5px) scale(1.025);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.16) 0%,
+      rgba(255, 255, 255, 0.055) 45%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
+
+  border-color: rgba(0, 0, 0, 0.15);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.025),
+    0 22px 55px rgba(0, 0, 0, 0.075);
+}
+
+
+/* =========================================================
+   GLASS CARD CONTENT
+========================================================= */
+
+.expertise-card-content {
+  position: relative;
+  z-index: 10;
+}
+
+
+/* =========================================================
+   COLOUR ACCENT
+========================================================= */
+
+.expertise-accent {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 2px;
+  height: 100%;
+
+  transform: scaleY(0);
+  transform-origin: bottom;
+
+  opacity: 0.85;
+
+  transition:
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 500ms ease;
+}
+
+.expertise-card:hover .expertise-accent {
+  transform: scaleY(1);
+}
+
+
+/* =========================================================
+   GLASS CARD — MOBILE
+========================================================= */
+
+@media (max-width: 767px) {
+  .expertise-glass {
+    backdrop-filter:
+      blur(18px)
+      saturate(130%);
+
+    -webkit-backdrop-filter:
+      blur(18px)
+      saturate(130%);
+  }
 }
